@@ -1,0 +1,469 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a>ical-generator (v0.2.9)</a>
+</h1>
+<h4>ical-generator is a small piece of code which generates ical calendar files</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.ical-generator">module ical-generator</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical-generator.ical-generator">
+            function <span class="apidocSignatureSpan"></span>ical-generator
+            <span class="apidocSignatureSpan">(data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">ical-generator.</span>_tools</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.ical-generator._tools">module ical-generator._tools</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical-generator._tools.duration">
+            function <span class="apidocSignatureSpan">ical-generator._tools.</span>duration
+            <span class="apidocSignatureSpan">(seconds)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical-generator._tools.escape">
+            function <span class="apidocSignatureSpan">ical-generator._tools.</span>escape
+            <span class="apidocSignatureSpan">(str)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical-generator._tools.foldLines">
+            function <span class="apidocSignatureSpan">ical-generator._tools.</span>foldLines
+            <span class="apidocSignatureSpan">(input)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical-generator._tools.formatDate">
+            function <span class="apidocSignatureSpan">ical-generator._tools.</span>formatDate
+            <span class="apidocSignatureSpan">(d, dateonly, floating)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical-generator._tools.formatDateTZ">
+            function <span class="apidocSignatureSpan">ical-generator._tools.</span>formatDateTZ
+            <span class="apidocSignatureSpan">(property, date, eventData)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.ical-generator._tools.toJSON">
+            function <span class="apidocSignatureSpan">ical-generator._tools.</span>toJSON
+            <span class="apidocSignatureSpan">(object, attributes, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.ical-generator" id="apidoc.module.ical-generator">module ical-generator</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.ical-generator.ical-generator" id="apidoc.element.ical-generator.ical-generator">
+        function <span class="apidocSignatureSpan"></span>ical-generator
+        <span class="apidocSignatureSpan">(data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">ical-generator = function (data) {
+    'use strict';
+
+<span class="apidocCodeCommentSpan">    /**
+     * @type {ICalCalendar}
+     */
+</span>    var Calendar = require('./calendar.js');
+    return new Calendar(data);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.ical-generator._tools" id="apidoc.module.ical-generator._tools">module ical-generator._tools</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.ical-generator._tools.duration" id="apidoc.element.ical-generator._tools.duration">
+        function <span class="apidocSignatureSpan">ical-generator._tools.</span>duration
+        <span class="apidocSignatureSpan">(seconds)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function duration(seconds) {
+    var string = '';
+
+    // &lt; 0
+    if(seconds &lt; 0) {
+        string = '-';
+        seconds *= -1;
+    }
+
+    string += 'P';
+
+    // DAYS
+    if(seconds &gt;= 86400) {
+        string += Math.floor(seconds / 86400) + 'D';
+        seconds %= 86400;
+    }
+    if(!seconds &amp;&amp; string.length &gt; 1) {
+        return string;
+    }
+
+    string += 'T';
+
+    // HOURS
+    if(seconds &gt;= 3600) {
+        string += Math.floor(seconds / 3600) + 'H';
+        seconds %= 3600;
+    }
+
+    // MINUTES
+    if(seconds &gt;= 60) {
+        string += Math.floor(seconds / 60) + 'M';
+        seconds %= 60;
+    }
+
+    // SECONDS
+    if(seconds &gt; 0) {
+        string += seconds + 'S';
+    }
+    else if(string.length &lt;= 2) {
+        string += '0S';
+    }
+
+    return string;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// ACTION
+g += 'ACTION:' + data.type.toUpperCase() + '\r\n';
+
+if(data.trigger instanceof Date) {
+    g += 'TRIGGER;VALUE=DATE-TIME:' + tools.formatDate(data.trigger) + '\r\n';
+}
+else if(data.trigger &gt; 0) {
+    g += 'TRIGGER;RELATED=END:' + tools.<span class="apidocCodeKeywordSpan">duration</span>(data.trigger) + '\r\n
+';
+}
+else {
+    g += 'TRIGGER:' + tools.duration(data.trigger) + '\r\n';
+}
+
+// REPEAT
+if(data.repeat &amp;&amp; !data.interval) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical-generator._tools.escape" id="apidoc.element.ical-generator._tools.escape">
+        function <span class="apidocSignatureSpan">ical-generator._tools.</span>escape
+        <span class="apidocSignatureSpan">(str)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function escape(str) {
+    return str.replace(/[\\;,"]/g, function(match) {
+        return '\\' + match;
+    }).replace(/(?:\r\n|\r|\n)/g, '\\n');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+else if(data.type === 'audio') {
+    g += 'ATTACH;VALUE=URI:Basso\r\n';
+}
+
+// DESCRIPTION
+if(data.type === 'display' &amp;&amp; data.description) {
+    g += 'DESCRIPTION:' + tools.<span class="apidocCodeKeywordSpan">escape</span>(data.description) + '\r\n';
+}
+else if(data.type === 'display') {
+    g += 'DESCRIPTION:' + tools.escape(event.summary()) + '\r\n';
+}
+
+g += 'END:VALARM\r\n';
+return g;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical-generator._tools.foldLines" id="apidoc.element.ical-generator._tools.foldLines">
+        function <span class="apidocSignatureSpan">ical-generator._tools.</span>foldLines
+        <span class="apidocSignatureSpan">(input)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">foldLines = function (input) {
+    return input.split('\r\n').map(function(line) {
+        return line.match(/(.{1,74})/g).join('\r\n ');
+    }).join('\r\n');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    // Events
+    data.events.forEach(function(event) {
+        g += event.generate(calendar);
+    });
+
+    g += 'END:VCALENDAR';
+
+    g = tools.<span class="apidocCodeKeywordSpan">foldLines</span>(g);
+    return g;
+};
+
+
+/**
+ * Set your feed's domainâ€¦
+ *
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical-generator._tools.formatDate" id="apidoc.element.ical-generator._tools.formatDate">
+        function <span class="apidocSignatureSpan">ical-generator._tools.</span>formatDate
+        <span class="apidocSignatureSpan">(d, dateonly, floating)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function formatDate(d, dateonly, floating) {
+    var s;
+
+    function pad(i) {
+        return (i &lt; 10 ? '0' : '') + i;
+    }
+
+    s = d.getUTCFullYear();
+    s += pad(d.getUTCMonth() + 1);
+    s += pad(d.getUTCDate());
+
+    if(!dateonly) {
+        s += 'T';
+        s += pad(d.getUTCHours());
+        s += pad(d.getUTCMinutes());
+        s += pad(d.getUTCSeconds());
+
+        if(!floating) {
+            s += 'Z';
+        }
+    }
+
+    return s;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    throw 'No value for `trigger` in ICalAlarm given!';
+}
+
+// ACTION
+g += 'ACTION:' + data.type.toUpperCase() + '\r\n';
+
+if(data.trigger instanceof Date) {
+    g += 'TRIGGER;VALUE=DATE-TIME:' + tools.<span class="apidocCodeKeywordSpan">formatDate</span>(data.trigger) + '
+;\r\n';
+}
+else if(data.trigger &gt; 0) {
+    g += 'TRIGGER;RELATED=END:' + tools.duration(data.trigger) + '\r\n';
+}
+else {
+    g += 'TRIGGER:' + tools.duration(data.trigger) + '\r\n';
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical-generator._tools.formatDateTZ" id="apidoc.element.ical-generator._tools.formatDateTZ">
+        function <span class="apidocSignatureSpan">ical-generator._tools.</span>formatDateTZ
+        <span class="apidocSignatureSpan">(property, date, eventData)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function formatDateTZ(property, date, eventData) {
+    var tzParam = '',
+        floating = eventData.floating;
+
+    if(eventData.timezone) {
+        tzParam = ';TZID=' + eventData.timezone;
+
+        // This isn't a 'floating' event because it has a timezone;
+        // but we use it to omit the 'Z' UTC specifier in formatDate()
+        floating = true;
+    }
+
+    return property + tzParam + ':' + module.exports.formatDate(date, false, floating);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    if(data.end) {
+        g += 'DTEND;VALUE=DATE:' + tools.formatDate(data.end, true) + '\r\n';
+    }
+
+    g += 'X-MICROSOFT-CDO-ALLDAYEVENT:TRUE\r\n';
+    g += 'X-MICROSOFT-MSNCALENDAR-ALLDAYEVENT:TRUE\r\n';
+} else {
+    g += tools.<span class="apidocCodeKeywordSpan">formatDateTZ</span>('DTSTART', data.start, data) + '\r\n';
+    if(data.end) {
+        g += tools.formatDateTZ('DTEND', data.end, data) + '\r\n';
+    }
+}
+
+// REPEATING
+if(data.repeating) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.ical-generator._tools.toJSON" id="apidoc.element.ical-generator._tools.toJSON">
+        function <span class="apidocSignatureSpan">ical-generator._tools.</span>toJSON
+        <span class="apidocSignatureSpan">(object, attributes, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toJSON = function (object, attributes, options) {
+    var result = {};
+    options = options || {};
+    options.ignoreAttributes = options.ignoreAttributes || [];
+    options.hooks = options.hooks || {};
+
+    attributes.forEach(function(attribute) {
+        if(options.ignoreAttributes.indexOf(attribute) !== -1) {
+            return;
+        }
+
+        var value = object[attribute](),
+            newObj;
+
+        if(options.hooks[attribute]) {
+            value = options.hooks[attribute](value);
+        }
+        if(!value) {
+            return;
+        }
+
+        result[attribute] = value;
+
+        if(Array.isArray(result[attribute])) {
+            newObj = [];
+            result[attribute].forEach(function(object) {
+                newObj.push(object.toJSON());
+            });
+            result[attribute] = newObj;
+        }
+    });
+
+    return result;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * Export calender as JSON Object to use it laterâ€¦
+ *
+ * @since 0.2.4
+ * @returns Object Calendar
+ */
+this.toJSON = function() {
+    var tools = require('./_tools.js');
+    return tools.<span class="apidocCodeKeywordSpan">toJSON</span>(this, attributes);
+};
+
+
+/**
+ * Export Event to iCal
+ *
+ * @since 0.2.0
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
