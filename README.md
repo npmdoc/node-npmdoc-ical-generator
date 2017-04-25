@@ -1,6 +1,6 @@
 # npmdoc-ical-generator
 
-#### api documentation for  ical-generator (v0.2.9)  [![npm package](https://img.shields.io/npm/v/npmdoc-ical-generator.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-ical-generator) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-ical-generator.svg)](https://travis-ci.org/npmdoc/node-npmdoc-ical-generator)
+#### basic api documentation for  [ical-generator (v0.2.9)](https://github.com/sebbo2002/ical-generator#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-ical-generator.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-ical-generator) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-ical-generator.svg)](https://travis-ci.org/npmdoc/node-npmdoc-ical-generator)
 
 #### ical-generator is a small piece of code which generates ical calendar files
 
@@ -21,14 +21,14 @@
 ```json
 
 {
-    "name": "ical-generator",
-    "description": "ical-generator is a small piece of code which generates ical calendar files",
-    "author": "Sebastian Pekarek <mail@sebbo.net>",
-    "version": "0.2.9",
+    "author": {
+        "name": "Sebastian Pekarek"
+    },
     "bugs": {
         "url": "http://github.com/sebbo2002/ical-generator/issues"
     },
     "dependencies": {},
+    "description": "ical-generator is a small piece of code which generates ical calendar files",
     "devDependencies": {
         "grunt": "^0.4.5",
         "grunt-contrib-jshint": "^0.11.0",
@@ -37,16 +37,32 @@
         "mocha": "^1.20.1",
         "portfinder": "^0.2.1"
     },
+    "directories": {},
+    "dist": {
+        "shasum": "67312e484a8681c7abc1bbe77237b13faa5b1eb8",
+        "tarball": "https://registry.npmjs.org/ical-generator/-/ical-generator-0.2.9.tgz"
+    },
+    "gitHead": "c9f60db8110f60f6f020ec1c2a0a8185e901e391",
+    "homepage": "https://github.com/sebbo2002/ical-generator#readme",
+    "main": "./lib/index.js",
+    "maintainers": [
+        {
+            "name": "sebbo2002"
+        }
+    ],
+    "name": "ical-generator",
+    "optionalDependencies": {},
+    "preferGlobal": false,
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/sebbo2002/ical-generator.git"
+    },
     "scripts": {
         "test": "grunt && istanbul cover _mocha -- -R spec --no-colors"
     },
     "tonicExampleFilename": "./example/example_tonic.js",
-    "preferGlobal": false,
-    "main": "./lib/index.js",
-    "repository": {
-        "type": "git",
-        "url": "http://github.com/sebbo2002/ical-generator.git"
-    }
+    "version": "0.2.9",
+    "bin": {}
 }
 ```
 
